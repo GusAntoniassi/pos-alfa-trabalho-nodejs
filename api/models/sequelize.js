@@ -9,6 +9,7 @@ module.exports = {
         process.env.POSTGRES_PASSWORD,
         {
             dialect: 'postgres',
+            protocol: process.env.POSTGRES_PROTOCOL || 'tcp',
             host: process.env.POSTGRES_HOST || 'db',
             port: process.env.POSTGRES_PORT,
             define: {
