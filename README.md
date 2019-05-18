@@ -13,6 +13,8 @@ docker-compose up -d
 
 ## Acesso
 ```localhost:3001```
+ou (Heroku)
+```https://trabalho-node-pos-alfa.herokuapp.com/```
 
 ## Rotas
 
@@ -32,3 +34,8 @@ DEL|http://localhost:3001/api/tarefas/1/concluida|Desmarcar tarefa como Concluí
 
 ## Collection
 [Link](https://github.com/douglasjunior/WebDevAlfa-2019-Node/blob/master/Avalia%C3%A7%C3%A3o/Gerenciamento%20de%20Tarefas.postman_collection.json)
+
+## Comando p/ deploy no Heroku
+```
+git subtree push --prefix api heroku master
+```
