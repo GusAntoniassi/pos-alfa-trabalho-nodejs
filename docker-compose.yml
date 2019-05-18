@@ -1,0 +1,34 @@
+version: '3'
+services:
+  web:
+    build: api/
+    command: sh -c 'npm install && npm start'
+    ports:
+      - "${PORTA_WEB}:3000"
+    volumes:
+      - ./api:/var/www/html/
+    environment:
+      PORT: 3000
+      POSTGRES_USER:
+      POSTGRES_DB:
+      POSTGRES_PASSWORD:
+      POSTGRES_PORT: "${PORTA_BANCO}"
+      DEBUG: '*'
+    links:
+      - db
+    tty: true
+  db:
+    image: postgres:11.2
+    ports:
+      - "${PORTA_BANCO}:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./.docker/db/scripts:/docker-entrypoint-initdb.d/
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_DB
+      - POSTGRES_PASSWORD
+    tty: true
+
+volumes:
+  data:
