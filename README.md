@@ -6,6 +6,7 @@ Avaliação da disciplina de **Desenvolvimento Web com Node JS**.
 Faça o clone do projeto ou baixe o código fonte, depois rode os comandos a seguir na pasta do projeto
 
 ```
+cp .env.dist .env
 docker-compose build
 docker-compose up -d
 ```
