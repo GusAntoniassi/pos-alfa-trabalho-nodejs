@@ -86,8 +86,8 @@ router.put('/:tarefaId', [ authenticationMiddleware ], async function(req, res, 
       id: tarefaId,
       idusuario: idusuario
     } });
-    
-    if (!tarefa || !tarefa.length) {
+
+    if (!tarefa) {
       return res.status(404).send();
     }
 
