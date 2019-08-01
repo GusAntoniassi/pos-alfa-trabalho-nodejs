@@ -38,8 +38,11 @@ router.get('/:tarefaId*?', [authenticationMiddleware], function (req, res, next)
       attributes: ['id', 'nome', 'email', 'cpf', 'status'],
       where: {
         id: idusuario
-      }
+      },
     }],
+    order: [
+      ['id', 'DESC']
+    ],
     where
   })
     .then(function (tarefasBanco) {
