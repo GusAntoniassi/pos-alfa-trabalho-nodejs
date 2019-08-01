@@ -127,7 +127,7 @@ router.post('/login', function(req, res, next) {
   const jwt = require('../helper/jwt');
 
   Usuario.findOne({
-    attributes: ['id', 'nome', 'email', 'senha'],
+    attributes: ['id', 'nome', 'email', 'senha', 'status'],
     where: {
       email: usuario.email
     }
