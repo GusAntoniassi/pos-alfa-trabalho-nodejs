@@ -139,6 +139,10 @@ router.post('/login', function(req, res, next) {
       return res.status(404).send();
     }
 
+    if (!usuarioBanco.status) {
+      return res.status(403).send();
+    }
+
     hash.compare(usuario.senha, usuarioBanco.senha)
     .then((passwordMatch) => {
       if (!passwordMatch) {
