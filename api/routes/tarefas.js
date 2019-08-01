@@ -63,7 +63,7 @@ router.post('/', [authenticationMiddleware], function(req, res, next) {
   Tarefa.create({
       titulo: tarefa.titulo,
       descricao: tarefa.descricao,
-      concluida: 0,
+      concluida: tarefa.concluida ? 1 : 0,
       idusuario: idusuario
   })
   .then(function(usuarioCriado) {
@@ -93,7 +93,8 @@ router.put('/:tarefaId', [ authenticationMiddleware ], async function(req, res, 
 
     const tarefaAtualizada = await tarefa.update({
       titulo: body.titulo,
-      descricao: body.descricao
+      descricao: body.descricao,
+      concluida: body.concluida ? 1 : 0
     })
 
     return res.status(200).json(tarefaAtualizada)
