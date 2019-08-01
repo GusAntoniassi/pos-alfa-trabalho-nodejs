@@ -1,6 +1,11 @@
 const jwt = require('../helper/jwt');
 
 function invoke(req, res, next) {
+    if (req.method === 'OPTIONS') {
+        next();
+        return;
+    }
+
     const token = req.get('x-access-token');
 
     try {
