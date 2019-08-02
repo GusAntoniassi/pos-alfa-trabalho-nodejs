@@ -40,6 +40,9 @@ router.get('/', function(req, res, next) {
 
   Usuario.findAll({
     attributes: ['id', 'nome', 'email', 'cpf', 'status', 'nascimento'],
+    order: [
+      ['id', 'DESC']
+    ],
     where
   })
   .then(function(usuarios) {
@@ -91,10 +94,6 @@ router.put('/:usuarioId', [ authenticationMiddleware ], async function(req, res,
   const usuarioId = req.params.usuarioId
   const body = req.body;
 
-  if (req.dadosUsuario.id != usuarioId) {
-    return res.status(403).send({ msg: 'Você não tem permissão para acessar este recurso' });
-  }
-
   try { 
     const usuario = await Usuario.findByPk(usuarioId);
     
@@ -107,6 +106,7 @@ router.put('/:usuarioId', [ authenticationMiddleware ], async function(req, res,
       email: body.email,
       nascimento: body.nascimento,
       cpf: body.cpf,
+      status: body.status
     })
 
     const usuarioJson = usuarioAtualizado.toJSON();
@@ -174,10 +174,6 @@ router.get('/:usuarioId', [ authenticationMiddleware ], function (req, res, next
   Usuario.findByPk(usuarioId)
   .then(function (usuario) {
     if (usuario) {
-      if (req.dadosUsuario.id != usuarioId) {
-        return res.status(403).send({ msg: 'Você não tem permissão para acessar este recurso' });
-      }
-
       const usuarioJson = usuario.toJSON();
       delete usuarioJson.senha;
 
